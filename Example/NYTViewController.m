@@ -49,8 +49,6 @@ typedef NS_ENUM(NSUInteger, NYTViewControllerPhotoIndex) {
                 [photosViewController updateImageForPhoto:photo];
             }
         }
-        
-        [photosViewController appendPhotos:[[self class] newTestPhotos]];
     });
 }
 
@@ -167,6 +165,9 @@ typedef NS_ENUM(NSUInteger, NYTViewControllerPhotoIndex) {
 
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController didNavigateToPhoto:(id <NYTPhoto>)photo atIndex:(NSUInteger)photoIndex {
     NSLog(@"Did Navigate To Photo: %@ identifier: %lu", photo, (unsigned long)photoIndex);
+    if (photoIndex == photosViewController.numberOfPhotos - 1) {
+        [photosViewController appendPhotos:[[self class] newTestPhotos]];
+    }
 }
 
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController actionCompletedWithActivityType:(NSString *)activityType {

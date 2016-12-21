@@ -214,13 +214,16 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
 }
 
 - (void)appendPhotos:(nullable NSArray *)photos {
-    [_dataSource appendPhotos:photos];
-    
-    // 'reload' page view controller
-    self.pageViewController.dataSource = nil;
-    self.pageViewController.dataSource = self;
-    
-    [self updateOverlayInformation];
+    //call in next runloop, to avoid update photos in page view controller's callback, which will cause exception
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_dataSource appendPhotos:photos];
+        
+        // 'reload' page view controller
+        self.pageViewController.dataSource = nil;
+        self.pageViewController.dataSource = self;
+        
+        [self updateOverlayInformation];
+    });
 }
 
 - (void)addOverlayView {
