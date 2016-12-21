@@ -213,6 +213,16 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
     [self setCurrentlyDisplayedViewController:initialPhotoViewController animated:NO];
 }
 
+- (void)appendPhotos:(nullable NSArray *)photos {
+    [_dataSource appendPhotos:photos];
+    
+    // 'reload' page view controller
+    self.pageViewController.dataSource = nil;
+    self.pageViewController.dataSource = self;
+    
+    [self updateOverlayInformation];
+}
+
 - (void)addOverlayView {
     NSAssert(self.overlayView != nil, @"_overlayView must be set during initialization, to provide bar button items for this %@", NSStringFromClass([self class]));
 

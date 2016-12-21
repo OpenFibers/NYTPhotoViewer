@@ -49,6 +49,8 @@ typedef NS_ENUM(NSUInteger, NYTViewControllerPhotoIndex) {
                 [photosViewController updateImageForPhoto:photo];
             }
         }
+        
+        [photosViewController appendPhotos:[[self class] newTestPhotos]];
     });
 }
 

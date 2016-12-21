@@ -121,6 +121,13 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
 - (instancetype)initWithPhotos:(NSArray <id <NYTPhoto>> * _Nullable)photos initialPhoto:(id <NYTPhoto> _Nullable)initialPhoto delegate:(nullable id <NYTPhotosViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /**
+ *  Append photos to photos view controller. Will perform a "reload" on inner page view controller.
+ *
+ *  @param photos An array of objects conforming to the `NYTPhoto` protocol.
+ */
+- (void)appendPhotos:(nullable NSArray *)photos;
+
+/**
  *  Displays the specified photo. Can be called before the view controller is displayed. Calling with a photo not contained within the data source has no effect.
  *
  *  @param photo    The photo to make the currently displayed photo.
