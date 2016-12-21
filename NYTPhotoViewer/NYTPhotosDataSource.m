@@ -34,6 +34,12 @@
     return self;
 }
 
+- (void)appendPhotos:(nullable NSArray *)photos {
+    if (photos.count) {
+        _photos = [_photos arrayByAddingObjectsFromArray:photos];
+    }
+}
+
 #pragma mark - NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)length {

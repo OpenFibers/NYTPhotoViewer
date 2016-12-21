@@ -48,6 +48,13 @@
 - (BOOL)containsPhoto:(id <NYTPhoto>)photo;
 
 /**
+ *  Append photos to data source.
+ *
+ *  @param photos An array of objects conforming to the `NYTPhoto` protocol.
+ */
+- (void)appendPhotos:(NSArray *)photos;
+
+/**
  *  Subscripting support. For example, `dataSource[0]` will be a valid way to obtain the photo at index 0.
  *  @note Indexes outside the range of the data source are expected to return `nil` and not to crash.
  *
