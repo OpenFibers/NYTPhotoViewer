@@ -142,6 +142,11 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  */
 - (void)updateImageForPhoto:(id <NYTPhoto> _Nullable)photo;
 
+/**
+ *  The total number of photos in the data source.
+ */
+@property (nonatomic, readonly) NSUInteger numberOfPhotos;
+
 @end
 
 /**
