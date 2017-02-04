@@ -216,7 +216,16 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
 - (void)appendPhotos:(nullable NSArray *)photos {
     //call in next runloop, to avoid update photos in page view controller's callback, which will cause exception
     dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL dataSourceWasEmpty = [_dataSource numberOfPhotos] == 0;
+        
         [_dataSource appendPhotos:photos];
+        
+        //load first image, if controller was empty and is not empty not
+        if (dataSourceWasEmpty && [self.dataSource numberOfPhotos] != 0)
+        {
+            NYTPhotoViewController *initialPhotoViewController = [self newPhotoViewControllerForPhoto:self.dataSource[0]];
+            [self setCurrentlyDisplayedViewController:initialPhotoViewController animated:NO];
+        }
         
         // 'reload' page view controller
         self.pageViewController.dataSource = nil;
